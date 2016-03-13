@@ -1,5 +1,9 @@
+# coding=utf-8
+# 导入flask及模板
 from flask import Flask, render_template
+# 导入启动脚本
 from flask.ext.script import Manager
+# 导入html响应框架
 from flask.ext.bootstrap import Bootstrap
 
 app = Flask(__name__)
