@@ -1,6 +1,6 @@
 # coding=utf-8
 # 导入Flask及jinja2模板
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for
 # 导入命令行解析器
 from flask.ext.script import Manager
 # 导入前端框架
@@ -45,18 +45,15 @@ def internal_server_error(e):
 @app.route('/', methods=['GET', 'POST'])
 # 定义首页视图函数
 def index():
-    # 存放表单中输入的数据，如果没有输入其值为None
-    name = None
     # 定义表单类的实例化
     form = NameForm()
     # 如果表单中输入的数据能被验证函数接受（不为空），返回值为True，否则为Flase，当返回值为True开始处理表单提交的数据
     if form.validate_on_submit():
-        # 获取用户输入的数据
-        name = form.name.data
-        # 清空表单中数据
-        form.name.data = ''
+
+        session['name'] = form.name.data
+        return redirect(url_for('index'))
     # 渲染模板
-    return render_template('index.html', form=form, name=name)
+    return render_template('index.html', form=form, name=session.get('name'))
 
 if __name__ == '__main__':
     manager.run()
