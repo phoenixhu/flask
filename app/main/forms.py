@@ -1,4 +1,5 @@
 #coding=utf-8
+# 定义的表单
 
 from flask.ext.wtf import Form
 from wtforms import StringField, SubmitField

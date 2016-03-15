@@ -1,11 +1,16 @@
+#coding=utf-8
+# 蓝本中定义的程序路由
+
 from flask import render_template, session, redirect, url_for, current_app
 from .. import db
 from ..models import User
 from ..email import send_email
+# 导入蓝本
 from . import main
+# 导入定义的表单
 from .forms import NameForm
 
-
+# 路由修饰器由蓝本提供
 @main.route('/', methods=['GET', 'POST'])
 def index():
     form = NameForm()

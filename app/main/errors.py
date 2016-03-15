@@ -1,4 +1,8 @@
+#coding=utf-8
+# 蓝本中错误处理程序
+
 from flask import render_template
+# 导入蓝本
 from . import main
 
 @main.app_errorhandler(404)

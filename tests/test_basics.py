@@ -1,14 +1,19 @@
+#coding=utf-8
+# 单元测试用例
+
 import unittest
 from flask import current_app
 from app import create_app, db
 
 class BasicsTestCase(unittest.TestCase):
+    # 测试前运行
     def setUp(self):
         self.app = create_app('testing')
         self.app_context = self.app.app_context()
         self.app_context.push()
         db.create_all()
 
+    # 测试后运行
     def tearDown(self):
         db.session.remove()
         db.drop_all()
